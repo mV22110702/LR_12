@@ -1,0 +1,61 @@
+﻿@model LR_12.Models.Company
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Company</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EstablishedDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EstablishedDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Users)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Users.Count == 0)
+            {
+                <p>There are no users of this company</p>
+            } else {
+                <table class="table">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Users[0].FirstName)</th>
+                        <th>@Html.DisplayNameFor(model => model.Users[0].LastName)</th>
+                        <th>@Html.DisplayNameFor(model => model.Users[0].Age)</th>
+                    </tr>
+                    @foreach (var user in Model.Users)
+                    {
+                        <tr>
+                            <td>
+                                @user.FirstName
+                            </td>
+                            <td>
+                                @user.LastName
+                            </td>
+                            <td>
+                                @user.Age
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

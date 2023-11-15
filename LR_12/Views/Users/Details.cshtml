@@ -10,23 +10,55 @@
     <h4>User</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.FirstName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.LastName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.LastName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Age)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Age)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Company)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Company == null)
+            {
+                <p>The user is unemployed</p>
+            } else {
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Established date</th>
+                    <th>Actions</th>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.Company.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Company.EstablishedDate)
+                    </td>
+                    <td>
+                        <a asp-controller="Companies" asp-action="Edit" asp-route-id="@Model.Company.ID">Edit</a> |
+                        <a asp-controller="Companies" asp-action="Details" asp-route-id="@Model.Company.ID">Details</a> |
+                        <form asp-action="LeaveCompany" asp-route-id="@Model.ID" method="post">
+                            <input type="submit" value="Leave" />
+                        </form>
+                    </td>
+                </tr>
+            </table>
+            }
         </dd>
     </dl>
 </div>

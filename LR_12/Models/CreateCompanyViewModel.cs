@@ -5,17 +5,12 @@ using System.Text.Json.Serialization;
 
 namespace LR_12.Models
 {
-    public class Company
+    public class CreateCompanyViewModel
     {
-        public int ID { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
         [DisplayName("Established date")]
         public DateTime EstablishedDate { get; set; }
-
-        [JsonIgnore]
-        [InverseProperty("Company")]
-        public List<User> Users { get; set; }
     }
 }
